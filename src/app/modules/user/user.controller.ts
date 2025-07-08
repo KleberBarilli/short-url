@@ -2,11 +2,16 @@ import { Body, Controller, Post } from '@nestjs/common';
 import { CreateUserDto, CreateUserDtoResponse } from './dtos/create-user.dto';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateUserService } from 'src/app/core/user/services/create-user.service';
+import { LoginDto } from './dtos/login.dto';
+import { LoginService } from 'src/app/core/user/services/login.service';
 
 @Controller('api/users')
 @ApiTags('Users')
 export class UserController {
-  constructor(private createUserService: CreateUserService) {}
+  constructor(
+    private createUserService: CreateUserService,
+    private loginService: LoginService,
+  ) {}
 
   @ApiOperation({
     summary: 'Create a new user',
@@ -29,5 +34,23 @@ export class UserController {
   @Post()
   async createUser(@Body() data: CreateUserDto) {
     return this.createUserService.execute(data);
+  }
+
+  @Post('login')
+  @ApiOperation({
+    summary: 'User login',
+    description: 'Login with email and password to receive a JWT token.',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Login successful, returns a JWT token.',
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized: Invalid email or password.',
+  })
+  async login(@Body() data: LoginDto) {
+    console.log('Login attempt with data:', data);
+    return this.loginService.execute(data);
   }
 }

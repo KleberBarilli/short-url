@@ -3,6 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import {
   IsEmail,
   IsNotEmpty,
+  IsString,
   IsStrongPassword,
   MinLength,
 } from 'class-validator';
@@ -31,6 +32,7 @@ export class CreateUserDto {
       '- At least 1 symbol',
     ].join('\n'),
   })
+  @IsString()
   @IsStrongPassword({
     minLength: 6,
     minLowercase: 1,
