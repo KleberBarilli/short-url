@@ -1,7 +1,7 @@
-import { UrlEntity, UrlEntity_props } from './url.entity';
+import { UrlEntity, UrlEntityProps } from './url.entity';
 
 describe('UrlEntity', () => {
-  const urlProps: UrlEntity_props = {
+  const urlProps: UrlEntityProps = {
     id: 'id-123',
     originalUrl: 'https://example.com',
     code: 'abc123',

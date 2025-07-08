@@ -1,4 +1,4 @@
-export abstract class UrlEntity_props {
+export abstract class UrlEntityProps {
   id?: string;
   originalUrl: string;
   code: string;
@@ -10,9 +10,9 @@ export abstract class UrlEntity_props {
 }
 
 export class UrlEntity {
-  constructor(private _props: UrlEntity_props) {}
+  constructor(private _props: UrlEntityProps) {}
 
-  get props(): UrlEntity_props {
+  get props(): UrlEntityProps {
     return this._props;
   }
 
