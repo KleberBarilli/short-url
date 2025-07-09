@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { PrismaModule } from 'src/infra/db/prisma.module';
 import { UserController } from './user.controller';
 import { CreateUserService } from 'src/app/core/user/services/create-user.service';
@@ -6,11 +6,11 @@ import { FindUserByEmailService } from 'src/app/core/user/services/find-user-by-
 import { JwtStrategyService } from 'src/app/core/user/auth/jwt-strategy.service';
 import { LoginService } from 'src/app/core/user/services/login.service';
 import { TokenService } from 'src/app/core/user/auth/token.service';
-import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
+import { OptionalAuthMiddleware } from 'src/app/core/user/auth/optional-auth.middleware';
 
 @Module({
-  imports: [PrismaModule, PassportModule, JwtModule.register({})],
+  imports: [PrismaModule, JwtModule.register({})],
   controllers: [UserController],
   providers: [
     CreateUserService,
@@ -20,4 +20,10 @@ import { JwtModule } from '@nestjs/jwt';
     TokenService,
   ],
 })
-export class UserModule {}
+export class UserModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(OptionalAuthMiddleware)
+      .forRoutes({ path: 'api/urls/shorten', method: RequestMethod.POST });
+  }
+}
