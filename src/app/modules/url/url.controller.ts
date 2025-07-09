@@ -8,6 +8,7 @@ import {
   Post,
   Query,
   Req,
+  Res,
   UseGuards,
 } from '@nestjs/common';
 import {
@@ -16,15 +17,16 @@ import {
 } from './dtos/create-short-url.dto';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateShortUrlService } from 'src/app/core/url/services/create-short-url.service';
-import { Request } from 'express';
+import { Request, Response } from 'express';
 import { FindManyUrlByUserService } from 'src/app/core/url/services/find-many-url-by-user.service';
 import { JwtGuard } from 'src/app/core/user/auth/jwt.guard';
 import { FindManyUrlDto } from './dtos/find-many-url.dto';
 import { UpdateOriginalUrlService } from 'src/app/core/url/services/update-original-url.service';
 import { UpdateOriginalUrlDto } from './dtos/update-original-url.dto';
 import { DeleteShortUrlService } from 'src/app/core/url/services/delete-short-url.service';
+import { IncrementClicksService } from 'src/app/core/url/services/increment-clicks.service';
 
-@Controller('api/urls')
+@Controller()
 @ApiTags('Urls')
 export class UrlController {
   constructor(
@@ -32,9 +34,19 @@ export class UrlController {
     private findManyUrlByUserService: FindManyUrlByUserService,
     private updateOriginalUrlService: UpdateOriginalUrlService,
     private deleteShortUrlService: DeleteShortUrlService,
+    private incrementClicksService: IncrementClicksService,
   ) {}
 
-  @Post('shorten')
+  @ApiOperation({
+    summary: 'Redirect to original URL by short code',
+  })
+  @Get(':code')
+  async redirectLink(@Param('code') code: string, @Res() res: Response) {
+    const originalUrl = await this.incrementClicksService.execute(code);
+    return res.redirect(originalUrl);
+  }
+
+  @Post('api/urls/shorten')
   @ApiOperation({
     summary: 'Create a new short URL',
     description: 'Generates an unique short URL for the provided original URL.',
@@ -60,7 +72,7 @@ export class UrlController {
   }
 
   @UseGuards(JwtGuard)
-  @Get()
+  @Get('api/urls')
   @ApiOperation({
     summary: 'List all URLs for the authenticated user',
     description:
@@ -91,7 +103,7 @@ export class UrlController {
   }
 
   @UseGuards(JwtGuard)
-  @Patch(':id')
+  @Patch('api/urls/:id')
   @ApiOperation({
     summary: 'Update original URL for a short URL',
     description:
@@ -122,7 +134,7 @@ export class UrlController {
   }
 
   @UseGuards(JwtGuard)
-  @Delete(':id')
+  @Delete('api/urls/:id')
   @ApiOperation({
     summary: 'Soft delete a short URL',
     description: 'Deletes a short URL by its ID. Only the owner can delete it.',

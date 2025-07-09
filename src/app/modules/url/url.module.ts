@@ -9,6 +9,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { FindManyUrlByUserService } from 'src/app/core/url/services/find-many-url-by-user.service';
 import { UpdateOriginalUrlService } from 'src/app/core/url/services/update-original-url.service';
 import { DeleteShortUrlService } from 'src/app/core/url/services/delete-short-url.service';
+import { IncrementClicksService } from 'src/app/core/url/services/increment-clicks.service';
 
 @Module({
   imports: [PrismaModule, JwtModule.register({})],
@@ -21,6 +22,7 @@ import { DeleteShortUrlService } from 'src/app/core/url/services/delete-short-ur
     FindManyUrlByUserService,
     UpdateOriginalUrlService,
     DeleteShortUrlService,
+    IncrementClicksService,
   ],
 })
 export class UrlModule {}
