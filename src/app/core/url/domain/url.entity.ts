@@ -1,7 +1,10 @@
+import { DEFAULT_API_URL } from 'src/app/common/constants';
+
 export abstract class UrlEntityProps {
   id?: string;
   userId: string | null;
   originalUrl: string;
+  shortUrl?: string;
   code: string;
   clicks: number;
   createdAt?: Date;
@@ -29,6 +32,6 @@ export class UrlEntity {
   }
 
   getShortUrl(): string {
-    return `${this._props.originalUrl.replace(/\/$/, '')}/${this._props.code}`;
+    return `${DEFAULT_API_URL.replace(/\/$/, '')}/${this._props.code}`;
   }
 }

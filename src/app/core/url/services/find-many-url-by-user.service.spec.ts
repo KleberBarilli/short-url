@@ -27,7 +27,14 @@ describe('FindManyUrlByUserService', () => {
     const userId = 'user-1';
     const dto = { skip: 0, take: 10, sort: 'createdAt', order: 'desc' };
     const urls = [
-      { id: '1', userId, originalUrl: 'http://a.com', code: 'abc', clicks: 0 },
+      {
+        id: '1',
+        userId,
+        originalUrl: 'http://a.com',
+        code: 'abc',
+        clicks: 0,
+        shortUrl: 'http://localhost:3333/abc',
+      },
     ];
     prismaMock.shortUrl.findMany.mockResolvedValueOnce(urls);
 
@@ -39,7 +46,7 @@ describe('FindManyUrlByUserService', () => {
       take: dto.take,
       orderBy: { [dto.sort]: dto.order },
     });
-    expect(result).toBe(urls);
+    expect(result).toEqual(urls);
   });
 
   it('should return empty array if no urls found', async () => {
