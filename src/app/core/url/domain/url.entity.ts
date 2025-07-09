@@ -1,5 +1,6 @@
 export abstract class UrlEntityProps {
   id?: string;
+  userId?: string;
   originalUrl: string;
   code: string;
   clicks: number;

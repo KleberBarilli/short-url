@@ -1,10 +1,11 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, Req } from '@nestjs/common';
 import {
   CreateShortUrlDto,
   CreateShortUrlDtoResponse,
 } from './dtos/create-short-url.dto';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateShortUrlService } from 'src/app/core/url/services/create-short-url.service';
+import { Request } from 'express';
 
 @Controller('api/urls')
 @ApiTags('Urls')
@@ -25,7 +26,10 @@ export class UrlController {
     status: 409,
     description: 'Conflict: Could not generate a unique short code.',
   })
-  async createShortUrl(@Body() data: CreateShortUrlDto) {
-    return this.createShortUrlService.execute(data.originalUrl);
+  async createShortUrl(
+    @Body() data: CreateShortUrlDto,
+    @Req() { user }: Request,
+  ) {
+    return this.createShortUrlService.execute(data.originalUrl, user?.sub);
   }
 }

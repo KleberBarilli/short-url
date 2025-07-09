@@ -12,7 +12,10 @@ export class CreateShortUrlService {
     private createShortCodeService: CreateShortCodeService,
   ) {}
 
-  async execute(originalUrl: string): Promise<CreateShortUrlResponse> {
+  async execute(
+    originalUrl: string,
+    userId?: string,
+  ): Promise<CreateShortUrlResponse> {
     const code = await this.createShortCodeService.execute(SHORT_CODE_LENGTH);
 
     if (!code) {
@@ -23,6 +26,7 @@ export class CreateShortUrlService {
 
     const urlEntity = new UrlEntity({
       originalUrl,
+      userId,
       code,
       clicks: 0,
     });

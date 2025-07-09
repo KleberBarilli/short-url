@@ -50,7 +50,6 @@ export class UserController {
     description: 'Unauthorized: Invalid email or password.',
   })
   async login(@Body() data: LoginDto) {
-    console.log('Login attempt with data:', data);
     return this.loginService.execute(data);
   }
 }

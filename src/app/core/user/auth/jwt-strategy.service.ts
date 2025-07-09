@@ -14,7 +14,10 @@ export class JwtStrategyService extends PassportStrategy(Strategy, 'jwt') {
     });
   }
 
-  validate({ sub, name }: TokenPayload): { userId: string; name: string } {
-    return { userId: sub, name: name };
+  validate({
+    sub,
+    name,
+  }: TokenPayload): { sub: string; name: string } | undefined {
+    return { sub, name: name };
   }
 }
