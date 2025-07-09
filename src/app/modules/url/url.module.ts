@@ -8,6 +8,7 @@ import { TokenService } from 'src/app/core/user/auth/token.service';
 import { JwtModule } from '@nestjs/jwt';
 import { FindManyUrlByUserService } from 'src/app/core/url/services/find-many-url-by-user.service';
 import { UpdateOriginalUrlService } from 'src/app/core/url/services/update-original-url.service';
+import { DeleteShortUrlService } from 'src/app/core/url/services/delete-short-url.service';
 
 @Module({
   imports: [PrismaModule, JwtModule.register({})],
@@ -19,6 +20,7 @@ import { UpdateOriginalUrlService } from 'src/app/core/url/services/update-origi
     TokenService,
     FindManyUrlByUserService,
     UpdateOriginalUrlService,
+    DeleteShortUrlService,
   ],
 })
 export class UrlModule {}

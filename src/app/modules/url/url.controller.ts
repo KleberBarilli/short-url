@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -21,6 +22,7 @@ import { JwtGuard } from 'src/app/core/user/auth/jwt.guard';
 import { FindManyUrlDto } from './dtos/find-many-url.dto';
 import { UpdateOriginalUrlService } from 'src/app/core/url/services/update-original-url.service';
 import { UpdateOriginalUrlDto } from './dtos/update-original-url.dto';
+import { DeleteShortUrlService } from 'src/app/core/url/services/delete-short-url.service';
 
 @Controller('api/urls')
 @ApiTags('Urls')
@@ -29,6 +31,7 @@ export class UrlController {
     private createShortUrlService: CreateShortUrlService,
     private findManyUrlByUserService: FindManyUrlByUserService,
     private updateOriginalUrlService: UpdateOriginalUrlService,
+    private deleteShortUrlService: DeleteShortUrlService,
   ) {}
 
   @Post('shorten')
@@ -99,6 +102,10 @@ export class UrlController {
     description: 'Successfully updated original URL.',
   })
   @ApiResponse({
+    status: 400,
+    description: 'Bad Request',
+  })
+  @ApiResponse({
     status: 401,
     description: 'Unauthorized',
   })
@@ -112,5 +119,24 @@ export class UrlController {
       user?.sub as string,
       originalUrl,
     );
+  }
+
+  @UseGuards(JwtGuard)
+  @Delete(':id')
+  @ApiOperation({
+    summary: 'Soft delete a short URL',
+    description: 'Deletes a short URL by its ID. Only the owner can delete it.',
+  })
+  @ApiResponse({
+    status: 204,
+    description: 'Short URL deleted successfully.',
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Bad Request',
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
+  async deleteShortUrl(@Req() { user }: Request, @Param('id') id: string) {
+    return this.deleteShortUrlService.execute(id, user?.sub as string);
   }
 }
