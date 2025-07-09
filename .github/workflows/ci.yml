@@ -26,4 +26,4 @@ jobs:
         run: npm run lint
 
       - name: Run Unit Tests
-        run: npm test:verbose
+        run: npm run test:verbose
