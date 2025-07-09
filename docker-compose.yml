@@ -12,7 +12,12 @@ services:
       - /app/node_modules
     depends_on:
       - db
-    entrypoint: ['sh', '-c', 'npx prisma generate && npx prisma migrate deploy && npm run start:dev']
+    entrypoint:
+      [
+        'sh',
+        '-c',
+        'npx prisma generate && npx prisma migrate deploy && npm run start:dev',
+      ]
 
   db:
     image: postgres:16
