@@ -6,6 +6,7 @@ import { FindUrlByCodeService } from 'src/app/core/url/services/find-url-by-code
 import { PrismaModule } from 'src/infra/db/prisma.module';
 import { TokenService } from 'src/app/core/user/auth/token.service';
 import { JwtModule } from '@nestjs/jwt';
+import { FindManyUrlByUserService } from 'src/app/core/url/services/find-many-url-by-user.service';
 
 @Module({
   imports: [PrismaModule, JwtModule.register({})],
@@ -15,6 +16,7 @@ import { JwtModule } from '@nestjs/jwt';
     CreateShortUrlService,
     FindUrlByCodeService,
     TokenService,
+    FindManyUrlByUserService,
   ],
 })
 export class UrlModule {}

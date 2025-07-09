@@ -3,6 +3,7 @@ import { UrlEntity, UrlEntityProps } from './url.entity';
 describe('UrlEntity', () => {
   const urlProps: UrlEntityProps = {
     id: 'id-123',
+    userId: 'user-456',
     originalUrl: 'https://example.com',
     code: 'abc123',
     clicks: 0,

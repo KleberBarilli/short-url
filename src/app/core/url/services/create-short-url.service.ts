@@ -26,7 +26,7 @@ export class CreateShortUrlService {
 
     const urlEntity = new UrlEntity({
       originalUrl,
-      userId,
+      userId: userId || null,
       code,
       clicks: 0,
     });
