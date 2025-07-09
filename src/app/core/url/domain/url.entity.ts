@@ -20,17 +20,6 @@ export class UrlEntity {
     return this._props;
   }
 
-  incrementClicks() {
-    this._props.clicks++;
-    this._props.lastClickedAt = new Date();
-  }
-
-  decrementClicks() {
-    if (this._props.clicks > 0) {
-      this._props.clicks--;
-    }
-  }
-
   getShortUrl(): string {
     return `${DEFAULT_API_URL.replace(/\/$/, '')}/${this._props.code}`;
   }

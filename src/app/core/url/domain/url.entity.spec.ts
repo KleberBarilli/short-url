@@ -21,25 +21,6 @@ describe('UrlEntity', () => {
     expect(url.props.clicks).toBe(0);
   });
 
-  it('should increment clicks and set lastClickedAt', () => {
-    const url = new UrlEntity({ ...urlProps });
-    url.incrementClicks();
-    expect(url.props.clicks).toBe(1);
-    expect(url.props.lastClickedAt).toBeInstanceOf(Date);
-  });
-
-  it('should decrement clicks', () => {
-    const url = new UrlEntity({ ...urlProps, clicks: 2 });
-    url.decrementClicks();
-    expect(url.props.clicks).toBe(1);
-  });
-
-  it('should not decrement clicks below zero', () => {
-    const url = new UrlEntity({ ...urlProps, clicks: 0 });
-    url.decrementClicks();
-    expect(url.props.clicks).toBe(0);
-  });
-
   it('should return the short url', () => {
     const url = new UrlEntity({ ...urlProps });
     const shortUrl = url.getShortUrl();
