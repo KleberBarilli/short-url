@@ -7,6 +7,7 @@ import { PrismaModule } from 'src/infra/db/prisma.module';
 import { TokenService } from 'src/app/core/user/auth/token.service';
 import { JwtModule } from '@nestjs/jwt';
 import { FindManyUrlByUserService } from 'src/app/core/url/services/find-many-url-by-user.service';
+import { UpdateOriginalUrlService } from 'src/app/core/url/services/update-original-url.service';
 
 @Module({
   imports: [PrismaModule, JwtModule.register({})],
@@ -17,6 +18,7 @@ import { FindManyUrlByUserService } from 'src/app/core/url/services/find-many-ur
     FindUrlByCodeService,
     TokenService,
     FindManyUrlByUserService,
+    UpdateOriginalUrlService,
   ],
 })
 export class UrlModule {}
