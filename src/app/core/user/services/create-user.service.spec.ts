@@ -57,6 +57,9 @@ describe('CreateUserService', () => {
         email: 'john@email.com',
         password: 'hashed-password',
       },
+      select: {
+        id: true,
+      },
     });
   });
 
