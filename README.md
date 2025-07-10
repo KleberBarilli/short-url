@@ -17,7 +17,7 @@ A user-friendly REST API for creating, managing, and sharing shortened URLs. Thi
 
 This is a simple deployment hosted on an AWS EC2 instance using the free tier, designed to be publicly accessible for testing purposes.
 
-> 📎 [http://44.199.242.110:3333/docs](http://44.199.242.110:3333/docs)
+> 📎 [http://3.235.135.79:3333/docs](http://3.235.135.79:3333/docs)
 
 No setup required, just access the Swagger UI and interact with the documented endpoints directly from your browser.
 
