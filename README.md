@@ -40,6 +40,20 @@ cd short-url
 
 ### 📄 Create a .env file based on the provided .example.env
 
+### 🛡️ Configure Sentry, not mandatory (tutorial below):
+
+To enable error monitoring with Sentry, follow these steps:
+
+1. Go to [https://sentry.io](https://sentry.io)
+2. Create an account or log in.
+3. Create a new project.
+4. Select **Nest.js** as the platform.
+5. After project creation, copy the **DSN** provided by Sentry
+
+Paste the DSN into your `.env` file as shown in `.example.env`.
+
+> **Note:** You can enable or disable Sentry integration at any time by setting the `SENTRY_STATUS` variable in your `.env` file to `on` or `off`.
+
 ### ▶️ Start the containers:
 
 ```bash
