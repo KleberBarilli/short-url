@@ -1,98 +1,129 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 🔗 Short URL API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A user-friendly REST API for creating, managing, and sharing shortened URLs. This service allows anyone to quickly generate short links for any destination.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 🧰 Main Tech Stack
 
-## Description
+| Technology                                                                                     | Description                                            |
+| ---------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| ![Node.js](https://img.shields.io/badge/Node.js-22.17.0-brightgreen?logo=nodedotjs)            | Requires v22.17.0 (LTS) or higher within the 22.x line |
+| ![NestJS](https://img.shields.io/badge/-NestJS-E0234E?logo=nestjs&logoColor=white)             | Modular Node.js backend framework with TypeScript      |
+| ![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-4169E1?logo=postgresql&logoColor=white) | Robust relational database                             |
+| ![Prisma](https://img.shields.io/badge/-Prisma-2D3748?logo=prisma&logoColor=white)             | Type-safe ORM for Node.js and PostgreSQL               |
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+---
 
-## Project setup
+## 🌍 Public API (Deployed on AWS EC2)
 
-```bash
-$ npm install
-```
+This is a simple deployment hosted on an AWS EC2 instance using the free tier, designed to be publicly accessible for testing purposes.
 
-## Compile and run the project
+> 📎 [http://44.199.242.110:3333/docs](http://44.199.242.110:3333/docs)
 
-```bash
-# development
-$ npm run start
+No setup required, just access the Swagger UI and interact with the documented endpoints directly from your browser.
 
-# watch mode
-$ npm run start:dev
+However, if you'd rather run the project locally on your own machine, for development or customization, follow the instructions below:
 
-# production mode
-$ npm run start:prod
-```
+## 🚀 How to Run Locally (via Docker Compose)
 
-## Run tests
+### ✅ Requirements
+
+- [Docker](https://www.docker.com/) installed
+- [Docker Compose](https://docs.docker.com/compose/) installed
+
+### 🔧 Steps
 
 ```bash
-# unit tests
-$ npm run test
+git clone https://github.com/your-username/short-url.git
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+cd short-url
 ```
 
-## Deployment
+### 📄 Create a .env file based on the provided .example.env
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### ▶️ Start the containers:
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+docker compose up
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## 📚 Available Endpoints (via Swagger)
 
-## Resources
+You can explore all endpoints directly on [Swagger UI](http://44.199.242.110:3333/docs), but here's a quick reference:
 
-Check out a few resources that may come in handy when working with NestJS:
+### 🔐 Authentication
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+- `POST /api/users/login` — Login
 
-## Support
+### 👤 Users
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+- `POST /api/users` — Register a new user
 
-## Stay in touch
+### 🔗 Shortened URLs
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- `POST /api/urls/shorten` — Create a shortened URL
+- `GET /:code` — Redirect to the original URL and increment 1 click
+- `GET /api/urls` — List all URLs created by logged
+- `PATCH /api/urls/:id` — Update the destination URL of an existing shortened link
+- `DELETE /api/urls/:id` — Soft delete a shortened URL
 
-## License
+Only the authenticated user who created a shortened URL can perform operations on it, such as listing, editing, or soft-deleting. When calling the POST /api/urls/shorten route without being logged in, the shortened URL will not be linked to any user account.
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+---
+
+## ⚙️ Scaling Considerations
+
+### ⚠️ Main Challenges
+
+- **Click Counter Consistency:**
+  - With multiple instances handling GET /:code, concurrent updates to the click count can lead to lost or inconsistent data if not properly synchronized.
+
+- **Race Conditions in Code Generation:**
+  - When several instances generate short codes at the same time, there's a risk of creating duplicates due to simultaneous insert attempts, especially under high load.
+
+### 📌 Suggested Improvements for Horizontal Scaling
+
+- **Caching:**
+  - Apply cache to all listings.
+
+- **Layered Rate Limiting:**
+  - Apply a global rate limiter per IP to avoid abuse.
+  - Apply personalized rate limits per authenticated user (e.g., define how many short URLs they can create per hour or per day).
+
+- **Distributed Locking (Redis Leasing):**
+  - A Redis-based leasing strategy (`SETNX` with expiry) can be used to temporarily reserve short codes before attempting to save them.
+  - This helps coordinate instances in high-concurrency environments and significantly reduces the chance of hitting the database with a code that’s already in use, avoiding redundant insert attempts and database load.
+
+- **Analytics & Metrics Aggregation:**
+  - Separate the click tracking logic from the main request cycle by recording clicks asynchronously (e.g., store in Redis).
+  - Periodically aggregate and persist the metrics to the database to avoid write pressure on every redirect.
+
+## 🤝 Contributing
+
+Contributions are welcome! 🚀
+
+If you want to improve this project or add new features:
+
+1. Fork this repository
+2. Create a new branch:
+
+   ```bash
+   git checkout -b my-feature
+   ```
+
+3. Commit your changes:
+
+   ```bash
+   git commit -m 'feat: added feature'
+   ```
+
+4. Push to your branch:
+
+   ```bash
+   git push origin my-feature
+   ```
+
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License.
