@@ -37,9 +37,12 @@ export class CreateUserService {
         email: userEntity.email,
         password: userEntity.password,
       },
+      select: {
+        id: true,
+      },
     });
 
-    Logger.verbose(`User successfully created: ${createdUser.name}`);
+    Logger.verbose(`User successfully created: ${name}`);
 
     return createdUser;
   }
