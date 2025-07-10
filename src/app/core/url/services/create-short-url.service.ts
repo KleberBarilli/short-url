@@ -15,6 +15,7 @@ export class CreateShortUrlService {
   async execute(
     originalUrl: string,
     userId?: string,
+    expiresInDays?: number,
   ): Promise<CreateShortUrlResponse> {
     const code = await this.createShortCodeService.execute(SHORT_CODE_LENGTH);
 
@@ -29,6 +30,9 @@ export class CreateShortUrlService {
       userId: userId || null,
       code,
       clicks: 0,
+      expiresAt: expiresInDays
+        ? new Date(Date.now() + expiresInDays * 24 * 60 * 60 * 1000)
+        : null,
     });
 
     await this.prisma.shortUrl.create({
@@ -38,6 +42,7 @@ export class CreateShortUrlService {
     return {
       originalUrl: urlEntity.props.originalUrl,
       shortUrl: urlEntity.getShortUrl(),
+      expiresAt: urlEntity.props.expiresAt || null,
     };
   }
 }

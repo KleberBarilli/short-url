@@ -50,7 +50,15 @@ describe('CreateShortUrlService', () => {
     const result = await service.execute('https://example.com');
     expect(result.originalUrl).toBe('https://example.com');
     expect(result.shortUrl).toContain('abc123');
-    expect(prismaMock.shortUrl.create).toHaveBeenCalled();
+    expect(prismaMock.shortUrl.create).toHaveBeenCalledWith({
+      data: {
+        originalUrl: 'https://example.com',
+        code: 'abc123',
+        clicks: 0,
+        expiresAt: null,
+        userId: null,
+      },
+    });
   });
 
   it('should throw if code generation fails', async () => {

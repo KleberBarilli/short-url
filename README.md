@@ -17,7 +17,7 @@ A user-friendly REST API for creating, managing, and sharing shortened URLs. Thi
 
 This is a simple deployment hosted on an AWS EC2 instance using the free tier, designed to be publicly accessible for testing purposes.
 
-> 📎 [http://44.199.242.110:3333/docs](http://44.199.242.110:3333/docs)
+> 📎 [http://3.235.135.79:3333/docs](http://3.235.135.79:3333/docs)
 
 No setup required, just access the Swagger UI and interact with the documented endpoints directly from your browser.
 
@@ -81,6 +81,10 @@ You can explore all endpoints directly on [Swagger UI](http://44.199.242.110:333
 - `DELETE /api/urls/:id` — Soft delete a shortened URL
 
 Only the authenticated user who created a shortened URL can perform operations on it, such as listing, editing, or soft-deleting. When calling the POST /api/urls/shorten route without being logged in, the shortened URL will not be linked to any user account.
+
+> ⚠️ **Warning:**  
+> All expired URLs will be **physically removed** from the database by the background cleanup process.  
+> This means expired links are permanently deleted and cannot be recovered.
 
 ---
 

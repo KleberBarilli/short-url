@@ -11,6 +11,7 @@ export abstract class UrlEntityProps {
   updatedAt?: Date;
   deletedAt?: Date | null;
   lastClickedAt?: Date | null;
+  expiresAt?: Date | null;
 }
 
 export class UrlEntity {
