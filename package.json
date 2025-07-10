@@ -1,6 +1,6 @@
 {
   "name": "short-url",
-  "version": "0.0.1",
+  "version": "0.0.6",
   "description": "A REST API for creating and managing shortened URLs.",
   "author": "Kleber Barilli",
   "private": true,
