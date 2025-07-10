@@ -1,5 +1,5 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsUrl } from 'class-validator';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { IsNotEmpty, IsNumber, IsOptional, IsUrl, Min } from 'class-validator';
 import { CreateShortUrlResponse } from 'src/app/core/url/types/CreateShortUrlResponse';
 
 export class CreateShortUrlDto {
@@ -11,6 +11,15 @@ export class CreateShortUrlDto {
   @IsNotEmpty()
   @IsUrl()
   originalUrl: string;
+
+  @ApiPropertyOptional({
+    description: 'How many days the short URL will be valid (Optional)',
+    example: 30,
+  })
+  @IsOptional()
+  @IsNumber()
+  @Min(1)
+  expiresInDays?: number;
 }
 
 export class CreateShortUrlDtoResponse implements CreateShortUrlResponse {
@@ -24,4 +33,9 @@ export class CreateShortUrlDtoResponse implements CreateShortUrlResponse {
     example: 'http://localhost/012345',
   })
   shortUrl: string;
+
+  @ApiProperty({
+    example: '2025-07-10 21:10:35.205',
+  })
+  expiresAt?: Date;
 }

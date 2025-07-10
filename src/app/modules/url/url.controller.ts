@@ -49,7 +49,8 @@ export class UrlController {
   @Post('api/urls/shorten')
   @ApiOperation({
     summary: 'Create a new short URL',
-    description: 'Generates an unique short URL for the provided original URL.',
+    description:
+      'Generates an unique short URL for the provided original URL.\nThe field `expiresInDays` is optional and defaults to no expire if not provided.',
   })
   @ApiResponse({
     status: 201,
@@ -68,7 +69,11 @@ export class UrlController {
     @Body() data: CreateShortUrlDto,
     @Req() { user }: Request,
   ) {
-    return this.createShortUrlService.execute(data.originalUrl, user?.sub);
+    return this.createShortUrlService.execute(
+      data.originalUrl,
+      user?.sub,
+      data?.expiresInDays,
+    );
   }
 
   @UseGuards(JwtGuard)
