@@ -25,6 +25,7 @@ import { UpdateOriginalUrlService } from 'src/app/core/url/services/update-origi
 import { UpdateOriginalUrlDto } from './dtos/update-original-url.dto';
 import { DeleteShortUrlService } from 'src/app/core/url/services/delete-short-url.service';
 import { IncrementClicksService } from 'src/app/core/url/services/increment-clicks.service';
+import { SHORT_CODE_LENGTH } from 'src/app/common/constants';
 
 @Controller()
 @ApiTags('Urls')
@@ -42,8 +43,10 @@ export class UrlController {
   })
   @Get(':code')
   async redirectLink(@Param('code') code: string, @Res() res: Response) {
-    const originalUrl = await this.incrementClicksService.execute(code);
-    return res.redirect(originalUrl);
+    if (code && code.length === SHORT_CODE_LENGTH) {
+      const originalUrl = await this.incrementClicksService.execute(code);
+      return res.redirect(originalUrl);
+    }
   }
 
   @Post('api/urls/shorten')
