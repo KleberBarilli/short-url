@@ -62,8 +62,6 @@ docker compose up
 
 ## 📚 Available Endpoints (via Swagger)
 
-You can explore all endpoints directly on [Swagger UI](http://44.199.242.110:3333/docs), but here's a quick reference:
-
 ### 🔐 Authentication
 
 - `POST /api/users/login` — Login
