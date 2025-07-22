@@ -13,16 +13,6 @@ A user-friendly REST API for creating, managing, and sharing shortened URLs. Thi
 
 ---
 
-## 🌍 Public API (Deployed on AWS EC2)
-
-This is a simple deployment hosted on an AWS EC2 instance using the free tier, designed to be publicly accessible for testing purposes.
-
-> 📎 [http://3.235.135.79:3333/docs](http://3.235.135.79:3333/docs)
-
-No setup required, just access the Swagger UI and interact with the documented endpoints directly from your browser.
-
-However, if you'd rather run the project locally on your own machine, for development or customization, follow the instructions below:
-
 ## 🚀 How to Run Locally (via Docker Compose)
 
 ### ✅ Requirements
